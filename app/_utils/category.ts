@@ -27,3 +27,27 @@ export const Category = [
     }
 
 ]
+
+export const preCategory = [
+  "Smartphone",
+  "Headphones",
+  "Earbuds",
+  "Keyboard",
+  "Mouse",
+  "Laptop",
+  "Monitor",
+  "Webcam",
+  "Speaker",
+  "Power Bank",
+  "Networking",
+  "Storage",
+  "Smartwatch",
+  "Tablet",
+  "Media Player",
+  "Game Console",
+  "Smart Home",
+  "Security Camera",
+  "Docking Station",
+  "Stylus",
+  "Projector"
+];
