@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { Products as pds } from '@/app/_utils/products'
 import Image from 'next/image'
 import { preCategory } from '@/app/_utils/category'
+import Link from 'next/link'
 
 import { ShoppingBasket, Star } from 'lucide-react'
 function Products() {
@@ -102,7 +103,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                 </div>
                 <ul className='grid grid-cols-3 gap-7 '>
                     {
-                    currentItems.map((value)=> (
+                    currentItems.map((value, index)=> (
                         <li className="border bg-white  border-gray-300 rounded-xl">
                             <Image className='w-full h-[200px] rounded-t-xl object-cover' src={value.imageUrl} width={200} height={100} alt='something' />
                             <div className='px-8 p-5 '>
@@ -110,7 +111,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                                     <span className="font-bold text-xl">{value.currency} {value.price}</span>
                                     <span className='text-gray-500 line-through decoration-blue-400 '>{value.currency} {value.price + 239}</span>
                                 </div>
-                                <p className='text-lg'>{value.name}</p>
+                               <Link href={`/products/${index}`}><p className='text-lg'>{value.name}</p> </Link>
                                 <div className='flex gap-4 items-center w-full justify-between'>
                                     <span className='flex gap-2 px-6 font-bold justify-start items-center rounded-full p-[2px] bg-blue-300 text-white'><Star size={15} />{value.rating}</span>
                                     <p className='border-l border-gray-400 text-gray-400 pl-5 truncate'>{value.category}</p>
