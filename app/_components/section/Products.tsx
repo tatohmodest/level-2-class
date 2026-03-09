@@ -60,9 +60,9 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
 
   return (
     <div>
-      <section className='grid bg-gray-200  p-24 grid-cols-[1fr_4fr]'>
+      <section className='grid bg-gray-200 p-3  md:p-24 grid-cols-1 md:grid-cols-[1fr_4fr]'>
         {/*Category filter */}
-        <div className='px-[30px]  '>
+        <div className='px-[30px] md:block hidden '>
            <div className=' bg-white border-2 border-gray-200 '>
            <h1 className='font-bold p-3 text-xl'>Product category</h1>
            <ul className='px-6 flex  flex-col justify-center items-start   '>
@@ -85,7 +85,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
 
 
 
-        <div className=' px-20'>
+        <div className='px-4 md:px-20'>
             <div>
                 Search panels
             </div>
@@ -101,7 +101,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                         }
                     </ul>
                 </div>
-                <ul className='grid grid-cols-3 gap-7 '>
+                <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 '>
                     {
                     currentItems.map((value, index)=> (
                         <li className="border bg-white  border-gray-300 rounded-xl">
@@ -111,7 +111,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                                     <span className="font-bold text-xl">{value.currency} {value.price}</span>
                                     <span className='text-gray-500 line-through decoration-blue-400 '>{value.currency} {value.price + 239}</span>
                                 </div>
-                               <Link href={`/products/${index}`}><p className='text-lg'>{value.name}</p> </Link>
+                               <Link href={`/products/${value.productId}`}><p className='text-lg'>{value.name}</p> </Link>
                                 <div className='flex gap-4 items-center w-full justify-between'>
                                     <span className='flex gap-2 px-6 font-bold justify-start items-center rounded-full p-[2px] bg-blue-300 text-white'><Star size={15} />{value.rating}</span>
                                     <p className='border-l border-gray-400 text-gray-400 pl-5 truncate'>{value.category}</p>

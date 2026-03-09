@@ -26,3 +26,17 @@ body {
 }
 
 
+.hero-mobile {
+    grid-template-columns: 
+    'human'
+    'text-content'
+}
+
+
+.people {
+    grid-area:'human'
+}
+
+.content-text {
+    grid-area: 'text-content';
+}

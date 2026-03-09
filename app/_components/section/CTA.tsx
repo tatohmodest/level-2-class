@@ -26,9 +26,9 @@ function CTA() {
 
   return (
     <div>
-      <section className='bg-gray-200 p-[88px] mt-15 mx-[67px] rounded-[20px]'>
-        <h1 className='text-6xl font-bold text-center px-40 '>Experience streamlined shopping with Crescendo</h1>
-        <ul className='grid grid-cols-3 gap-15 justify-center items-center mt-8'>
+      <section className='bg-gray-200 p-7  md:p-[88px] mt-15 px-4 md:mx-[67px] rounded-[20px]'>
+        <h1 className='md:text-6xl text-xl font-bold text-center px-3 md:px-40 '>Experience streamlined shopping with Crescendo</h1>
+        <ul className='grid grid-cols-1 md:grid-cols-3 gap-15 justify-center items-center mt-8'>
                 {
                     flow.map((value)=>(
                         <li className='flex text-center flex-col justify-center items-center'>

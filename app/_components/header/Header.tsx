@@ -31,7 +31,7 @@ function Header() {
       <span>  CRESCENDO</span>
         </div>
         
-        <ul className="flex justify-center items-center gap-[20px] ">
+        <ul className="md:flex hidden  justify-center items-center gap-[20px] ">
             {
             navigation.map((value, key)=> (
                 <Link href={value.url}>

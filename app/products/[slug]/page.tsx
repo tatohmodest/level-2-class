@@ -1,6 +1,6 @@
 'use client'
 import { Products } from "@/app/_utils/products"
-import { Star, StarHalf, StarIcon } from "lucide-react";
+import { Heart, Star, StarHalf, StarIcon } from "lucide-react";
 import Image from "next/image"
 import { Fragment } from "react/jsx-runtime";
 import {useState} from 'react';
@@ -12,9 +12,10 @@ interface Props {
 }
 export default function ProductDetails () {
     const [amount , setAmount] = useState<number>(1)
+    const [favorite, setFavorite] = useState<boolean>(false)
     const {slug} = useParams()
     const obj = Products;
-    const prod = obj.find((value, index)=> index == slug)
+    const prod = obj.find((value, index)=> value.productId == slug)
     
     function Count() {
        return (
@@ -65,6 +66,9 @@ export default function ProductDetails () {
            <button className="border w-[200px] p-1 text-[14px] rounded-full">
             Buy Now
            </button>
+           <button>
+             {favorite ?  <Heart size={24} fill="red" onClick={()=> setFavorite(false)} color="red"/>:<Heart onClick={()=>setFavorite(true)}  size={24}/>}
+           </button>
            </div>
            </>
         )
@@ -73,15 +77,15 @@ export default function ProductDetails () {
 
     return (
         <Fragment>
-        <div className="px-[67px] mt-10">
-            <section className="grid grid-cols-2">
+        <div className="px-[10px] md:px-[67px] mt-10">
+            <section className="grid grid-cols-1 md:grid-cols-[1fr_3fr]">
             
-             <div className="rounded-xl mx-10">
+             <div className="rounded-xl  md:mx-10">
                 <Image className="w-full h-auto rounded-xl" src={prod?.imageUrl} width={500} height={700} alt="image" />
             </div>
        
-            <div className="leading-7.5">
-               <h2>{prod?.category}</h2>
+            <div className="leading-7.5 mt-3">
+               <h2 className="text-[14px] text-gray-500">{prod?.category}</h2>
                <h1 className="font-[400] text-3xl gap-3 flex justify-start items-center"><span>{prod?.name}</span><span className="border border-green-600 bg-green-300 text-green-600 p-[2px] rounded-full text-[14px] font-thin">inStock</span> </h1>
                <div className="flex gap-3">
                 <Stars num={prod?.rating} /><span>{prod?.rating}</span>
