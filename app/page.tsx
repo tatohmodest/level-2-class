@@ -4,8 +4,10 @@ import Section from './_components/section/Section'
 import Feature from './_components/section/Feature'
 import Category from './_components/section/Category'
 import CTA from './_components/section/CTA'
-
-function HomePage() {
+import { connectDB } from './lib/mongoose';
+async function HomePage() {
+  await connectDB()
+  
   return (
     <div>
       <Header />
@@ -13,6 +15,7 @@ function HomePage() {
       <Feature />
       <Category />
       <CTA />
+   
     </div>
   )
 }

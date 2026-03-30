@@ -4,13 +4,14 @@ import { Products as pds } from '@/app/_utils/products'
 import Image from 'next/image'
 import { preCategory } from '@/app/_utils/category'
 import Link from 'next/link'
-
+import useStore from '@/app/_utils/store'
 import { ShoppingBasket, Star } from 'lucide-react'
 function Products() {
+
    const [list , setList ] = useState<string[]>([])
    const [filter, setFilter] = useState(pds)
    const [currentPage, setCurrentPage] = useState(1)
-
+   const {count} = useStore()
    const itemsPerPage = 6
    
    const indexOfLastItem = currentPage * itemsPerPage
@@ -87,6 +88,8 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
 
         <div className='px-4 md:px-20'>
             <div>
+
+                {count}
                 Search panels
             </div>
             <div>
