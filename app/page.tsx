@@ -5,8 +5,8 @@ import Feature from './_components/section/Feature'
 import Category from './_components/section/Category'
 import CTA from './_components/section/CTA'
 import { connectDB } from './lib/mongoose';
-async function HomePage() {
-  await connectDB()
+ function HomePage() {
+
   
   return (
     <div>

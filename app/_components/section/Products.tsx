@@ -6,11 +6,31 @@ import { preCategory } from '@/app/_utils/category'
 import Link from 'next/link'
 import useStore from '@/app/_utils/store'
 import { ShoppingBasket, Star } from 'lucide-react'
+import { getProduct } from '@/app/api/getProduct'
+
+
+interface Productz {
+     _id: string
+    name: string
+    brand: string
+    category: string
+    image: string
+    description: string
+    rating: number
+    price: number
+    currency: string
+    inStock:boolean
+
+}
+ const {products} = await getProduct()
+   console.log("client side",products)
+
 function Products() {
 
    const [list , setList ] = useState<string[]>([])
-   const [filter, setFilter] = useState(pds)
-   const [currentPage, setCurrentPage] = useState(1)
+   const [filter, setFilter] = useState(products)
+   
+    const [currentPage, setCurrentPage] = useState(1)
    const {count} = useStore()
    const itemsPerPage = 6
    
@@ -30,19 +50,21 @@ function Products() {
       console.log(list)
    }
 
- 
+
+  
+  
 
  useEffect(()=>{
 
     if (list?.length == 0 ) {
-        setFilter(pds)
+        setFilter(products)
     }
     else{
-       const result =  pds.filter((item)=> list?.some((keyword)=>
+       const result =  products.filter((item)=> list?.some((keyword)=>
         item.name.includes(keyword) || item.category.includes(keyword)
 ))
 
-    setFilter(result.length == 0? pds: result)
+    setFilter(result.length == 0? products: result)
     
 }
 
@@ -61,7 +83,8 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
 
   return (
     <div>
-      <section className='grid bg-gray-200 p-3  md:p-24 grid-cols-1 md:grid-cols-[1fr_4fr]'>
+        
+      <section onLoad={()=>getProduct} className='grid bg-gray-200 p-3  md:p-24 grid-cols-1 md:grid-cols-[1fr_4fr]'>
         {/*Category filter */}
         <div className='px-[30px] md:block hidden '>
            <div className=' bg-white border-2 border-gray-200 '>
@@ -107,14 +130,14 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                 <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 '>
                     {
                     currentItems.map((value, index)=> (
-                        <li className="border bg-white  border-gray-300 rounded-xl">
-                            <Image className='w-full h-[200px] rounded-t-xl object-cover' src={value.imageUrl} width={200} height={100} alt='something' />
+                        <li key={value._id} className="border bg-white  border-gray-300 rounded-xl">
+                            <img className='w-full h-[200px] rounded-t-xl object-cover' src={value.image} width={200} height={100} alt='something' />
                             <div className='px-8 p-5 '>
                                 <div className='flex gap-5 justify-start items-center'>
                                     <span className="font-bold text-xl">{value.currency} {value.price}</span>
                                     <span className='text-gray-500 line-through decoration-blue-400 '>{value.currency} {value.price + 239}</span>
                                 </div>
-                               <Link href={`/products/${value.productId}`}><p className='text-lg'>{value.name}</p> </Link>
+                               <Link href={`/products/${value._id}`}><p className='text-lg'>{value.name}</p> </Link>
                                 <div className='flex gap-4 items-center w-full justify-between'>
                                     <span className='flex gap-2 px-6 font-bold justify-start items-center rounded-full p-[2px] bg-blue-300 text-white'><Star size={15} />{value.rating}</span>
                                     <p className='border-l border-gray-400 text-gray-400 pl-5 truncate'>{value.category}</p>
@@ -130,7 +153,7 @@ for (let i = 0; i< filter.length/itemsPerPage ;i++) {
                      <ul className=' bg-white flex'>
                         {
                           pages.map((value)=> (
-                            <li  className={`border list-none border-gray-300 p-4 ${currentPage == value+1 ? "bg-blue-500 text-white":""}`} onClick={()=>setCurrentPage(value+1)}>
+                            <li key={value} className={`border list-none border-gray-300 p-4 ${currentPage == value+1 ? "bg-blue-500 text-white":""}`} onClick={()=>setCurrentPage(value+1)}>
                                 {value + 1}
                             </li>
                           ))

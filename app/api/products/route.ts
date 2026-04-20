@@ -24,6 +24,7 @@ export async function POST(req: Request) {
     await connectDB();
     const body = await req.json();
     const product = await Product.create(body);
+    console.log("product created", product)
     return NextResponse.json(
       { success: true, data: product },
       { status: 201 });
